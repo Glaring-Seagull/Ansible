@@ -1,0 +1,9 @@
+---
+- hosts: centos
+  remote_user: mroe
+
+  tasks:
+  - name: Update centos boxes
+    yum:
+      name: '*'
+      state: latest
