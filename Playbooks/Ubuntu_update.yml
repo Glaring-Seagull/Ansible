@@ -1,0 +1,11 @@
+---
+- hosts: ubuntu
+  remote_user: mroe
+
+  tasks:
+  - name: Update ubuntu boxes
+    apt:
+      name: '*'
+      state: latest
+    become: True
+    become_method: sudo
