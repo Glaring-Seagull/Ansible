@@ -1,0 +1,15 @@
+---
+- name: Install, configure and start Apache
+  host: Apache
+  remote_user: mroe
+  become: yes
+  
+  task:
+  - name: install epel repo
+    yum: name=epel-release state=present
+    
+  - name: Install Apache
+    yum: pkg=httpd state=latest
+    
+  - name: Start Apache
+    service: name==httpd state=started
