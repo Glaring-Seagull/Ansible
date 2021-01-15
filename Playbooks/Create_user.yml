@@ -1,0 +1,11 @@
+---
+- name: Make sure user exists
+  remote_user: ansible_user
+  become: yes
+  become_method: sudo
+  user:
+    name: User_name_here
+    group: Wheel
+    shell: /bin/bash
+    password: "*###########*"
+    state: present
