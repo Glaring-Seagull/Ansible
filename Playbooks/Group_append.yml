@@ -1,0 +1,9 @@
+---
+- name: Allow user to manage group.
+  remote_user: ansible_user
+  become: yes
+  become_method: sudo
+  user:
+    name: User
+    groups: group_name
+    append: yes
