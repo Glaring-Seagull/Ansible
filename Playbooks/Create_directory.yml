@@ -1,0 +1,10 @@
+---
+- name: Create /date directory with respective ownership
+  remote_user: ansible_user
+  file:
+    path: /data
+    state: directory
+    owner: "File_owner"
+    group: "File_group"
+    mode: 0755
+    recurse: yes
