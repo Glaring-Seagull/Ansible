@@ -1,8 +1,8 @@
 ---
-- hosts: all
+- hosts: centos
   tasks:
   - name: copy ssh key to client
     ansible.builtin.lineinfile:
-     path: "/root/.ssh/authorized_keys"   
+     path: "/ansible/.ssh/authorized_keys"   
      line: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDRgnAC99q7rQh2aeckMmFe2cmw4UKbJAfXmFDJl/Zxq4mZ8UB7wkeJ7DFJdCIt3mq9JPKnDrMXDzoh3zWQjJqSzK5x0Ic6v09xxHddsPykJLmgadBiOGcxpxTA4LfRdMeWCBRf2IO9C7YXLhnAtu2TuXE4IrF2W7oFvgWbiQcxmkIKBWOt93DNtXWzDDB2BtCYi5yRCc02maYeoqQyI9GPKb0Ob70ANENwumoFmbOWvkZMVURiMpaIwYNN4WUWJ+gR2EbZytCaKWw365H2f1hUyizgPBUYVoYOaEZqim/Nj/Hxjg2zF261zXs5a+31y0ZIX2r5IPiHYggsuvFBewHr root@Ansible"
      create: yes
