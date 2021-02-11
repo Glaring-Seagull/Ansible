@@ -1,11 +1,10 @@
 ---
-- name: Make sure user exists
-  remote_user: ansible_user
-  become: yes
-  become_method: sudo
-  user:
-    name: User_name_here
-    group: Wheel
-    shell: /bin/bash
-    password: "*###########*"
-    state: present
+- name: Create New Users
+  hosts: centos
+  tasks:
+    - name: Create Users Task
+      user:
+        name: ansible
+        state: present
+        password: "Colonial1"
+        shell: /bin/bash
