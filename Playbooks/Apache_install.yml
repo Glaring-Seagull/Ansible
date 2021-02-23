@@ -1,15 +1,24 @@
 ---
 - name: Install, configure and start Apache
   host: Apache
-  remote_user: mroe
-  become: yes
-  
+  become: true
   task:
-  - name: install epel repo
+  - name: Install epel repo CentOS
     yum: name=epel-release state=present
-    
-  - name: Install Apache
+    when: ansible_distribution == "CentOS"
+
+  - name: Install Apache CentOS
     yum: pkg=httpd state=latest
+    when: ansible_distribution == "CentOS"
     
-  - name: Start Apache
-    service: name==httpd state=started
+  - name: Start Apache CentOS
+    service: name=httpd state=started
+    when: ansible_distribution == "CentOS"
+    
+  - name: Install Apache Ubuntu
+    apt: name=apache2 state=latest
+    when: ansible_distribution == "Ubuntu"
+    
+  - name: Install PHP
+    apt: name=libapache2-mod-php state=latest
+    when: when: ansible_distribution == "Ubuntu"
