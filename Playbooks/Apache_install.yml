@@ -21,4 +21,4 @@
     
   - name: Install PHP
     apt: name=libapache2-mod-php state=latest
-    when: when: ansible_distribution == "Ubuntu"
+    when: ansible_distribution == "Ubuntu"
