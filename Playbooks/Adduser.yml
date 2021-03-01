@@ -1,0 +1,27 @@
+---                               
+- name: Create New Users
+  gather_facts: false
+  hosts: all
+  tasks:
+    - name: Create Users Task
+      user:
+        name: ansible
+        state: present
+        password: "{{ password|password_hash('sha512') }}"
+        shell: /bin/bash
+        groups: wheel
+        append: true
+        when: ansible_distribution == "CentOS"
+- name: Create New Users
+  hosts: all
+  become: yes
+  tasks:
+    - name: Create Users Task
+      user:
+        name: ansible
+        state: present
+        password: "{{ password|password_hash('sha512') }}"
+        shell: /bin/bash
+        groups: sudo
+        append: true
+        when: ansible_distribution == "Ubuntu"
