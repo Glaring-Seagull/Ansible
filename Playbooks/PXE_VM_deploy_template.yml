@@ -1,0 +1,19 @@
+---
+- name: Create create container on PXE
+  host: PXE
+  task: 
+    proxmox_kvm:
+      api_user: root@pam
+      api_password: "{{ apipassword|password_hash('sha512') }}"
+      api_host: "{{ apihost }}"
+      vmid: "{{ vmid }}"
+      name: "{{ vmname }}"
+      autostart: yes
+      sockets: "{{ cpusockets }}"
+      cores: "{{ cores }}"
+      cpulimit: "{{ cpulimit }}"
+      format: "{{ format }}"
+      memory: "{{ memory }}"
+      net: '{"net0":"virtio,bridge=vmbr1"}'
+      onboot: yes
+      ostype: l26
