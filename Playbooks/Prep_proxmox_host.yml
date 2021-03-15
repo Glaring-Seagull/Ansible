@@ -10,6 +10,12 @@
       - 'requests'
 
   tasks:
+    - name: copy ssh key to client
+      ansible.builtin.lineinfile:
+       path: "/root/.ssh/authorized_keys"   
+       line: "{{ sshkey }}"
+       create: yes
+      
     - name: 'install python-apt so native apt plugins work'
       package:
         name: 'python-apt'
