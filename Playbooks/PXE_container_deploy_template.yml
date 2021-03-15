@@ -1,0 +1,24 @@
+---
+- name: Create create container on PXE
+  host: PXE
+  task: 
+    community.general.proxmox:
+      api_user: root@pam
+      api_password: "{{ apipassword|password_hash('sha512') }}"
+      api_host: "{{ apihost }}"
+      password: "{{ password|password_hash('sha512') }}"
+      vmid: "{{ vmid }}"
+      pubkey: "{{ pubkey|password_hash('sha512') }}"
+      disk: "{{ disk }}"
+      cores: "{{ cores }}"
+      cpus: "{{ cpus }}"
+      cpuunits: 1000
+      memory: "{{ memory }}"
+      swap: 1024
+      disk: "{{ disk }}"
+      onboot: yes
+      hostname: "{{ hostname }}"
+      netif: '{"net0":"name=eth0,gw="{{ gw }}",ip="{{ ip }}",bridge=vmbr0"}'
+      nameserver: "{{ nameserver }}"
+      ostemplate: 'local:ISOs/centos-7-default_20190926_amd64.tar.xz'
+      
