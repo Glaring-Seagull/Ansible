@@ -1,0 +1,19 @@
+--
+- name: Updates all linux servers
+  gather_facts: false
+  hosts: all
+  tasks:
+    - name: Updates CentOS
+      yum:
+        name: '*'
+        state: latest
+        when: ansible_distribution == "CentOS"
+- name: Updates Ubuntu
+  hosts: all
+  become: yes
+  tasks:
+    - name: Create Users Task
+      apt:
+        name: '*'
+        state: latest
+        when: ansible_distribution == "Ubuntu"
