@@ -1,0 +1,9 @@
+#Copies file on remote target(s) to local host running playbook. Sample built for DHCP, but can be modified.
+- name: Copy dhcp.conf to local host
+  gather_facts: true
+  hosts: dhcp
+  tasks:
+  - name: Copy file, uses hostname magic variable (gathered facts) to make file name unique to host
+    fetch:
+      src: /etc/dhcp/dhcpd.conf
+      dest: /root/{{ ansible_facts['nodename'] }}dhcpd.conf
