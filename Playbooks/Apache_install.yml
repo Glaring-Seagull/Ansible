@@ -2,22 +2,32 @@
 - hosts: Apache
   become: true
   tasks:
-    - name: Install epel repo CentOS
+    - name: Install epel repo for RedHat family OS
       yum: name=epel-release state=present
-      when: ansible_distribution == "CentOS"
+      when: ansible_os_family == "RedHat"
 
-    - name: Install Apache CentOS
-      yum: pkg=httpd state=latest
-      when: ansible_distribution == "CentOS"
+    - name: Install Apache and PHP RedHat family OS
+      yum: 
+        name: 
+          - httpd
+          - php
+        state: latest
+        update_cache: yes
+      when: ansible_os_family == "RedHat"
       
-    - name: Start Apache CentOS
-      service: name=httpd state=started
-      when: ansible_distribution == "CentOS"
+    - name: Start Apache RedHat family OS
+      service: 
+        name: httpd 
+        state: started 
+        enabled : yes
+        daemon-reload: yes
+      when: ansible_os_family == "RedHat"
       
-    - name: Install Apache Ubuntu
+    - name: Install Apache and PHP for Debian Family OS
       apt: 
         name:
           - apache2
           - libapache2-mod-php
         state: latest
-      when: ansible_distribution == "Ubuntu"
+        update_cache: yes
+      when: ansible_os_family == "Debian"
