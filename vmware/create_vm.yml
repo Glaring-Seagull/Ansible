@@ -1,0 +1,30 @@
+---
+- name: Create a new VM from template
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+  - name: Create new VM in Vpshere from a template
+    community.vmware.vmware.guest:
+      hostname: "{{ hostname }}"
+      username: "{{ vcenter_username }}"
+      password: "{{ vcenter_password }}"
+      datacenter: "{{ datacenter }}"
+      cluster: "{{ cluster }}"
+      validate_certs: false
+      state: present
+      folder: "{{ folder }}"
+      template: "{{ template }}"
+      name: "{{ new_vm_name }}"
+      hardware:
+       hotadd_cpu: true
+       hotadd_memory: true
+       hotreomove_cpu: true
+       num_cpus: "{{ num_cpus }}"
+       memory_mb: "{{ memory_mb }}"
+      disk: "{{ disk }}"
+      networks:
+       - name: "{{ vlan_name }}"
+         vlan: "{{ vlan_number }}"
+         start_connected: true
+         connected: true
